@@ -7,7 +7,7 @@
                 <div class="col-md-12 col-lg-4">
                     <div class="card">
                         <div class="card-body text-nowrap">
-                            <h5 class="card-title mb-0 flex-wrap text-nowrap">Welcome To Web Planning! 💍
+                            <h5 class="card-title mb-0 flex-wrap text-nowrap">Welcome To Web MenjadiHalal! 💍
                             </h5>
                             <p class="mb-2" style="color: red">{{ Auth::user()->name }}</p>
                             <h4 class="text-primary mb-0">Rp {{ number_format($totalBudget, 0, ',', '.') }}</h4>
@@ -25,7 +25,7 @@
                     <div class="card h-100">
                         <div class="card-header">
                             <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title m-0 me-2">Web Planning</h5>
+                                <h5 class="card-title m-0 me-2">Web MenjadiHalal</h5>
                                 <div class="dropdown">
                                     <button class="btn text-body-secondary p-0" type="button" id="transactionID"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
