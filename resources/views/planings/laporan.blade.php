@@ -6,6 +6,7 @@
                 <i class="icon-base ri ri-bar-chart-box-line me-1"></i> Laporan Ringkas Planning
             </h4>
 
+            <!-- Card stats tetap sama -->
             <div class="row mb-4">
                 <div class="col-lg-3 col-md-6 col-12 mb-4">
                     <div class="card shadow-sm border-start border-primary border-3">
@@ -111,10 +112,11 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th style="width: 5%">No</th>
-                                    <th style="width: 25%">Nama Kategori</th>
-                                    <th style="width: 15%" class="text-center">Jml. Planning</th>
-                                    <th style="width: 30%">Progress (Overall)</th>
-                                    <th style="width: 25%">Status Breakdown</th>
+                                    <th style="width: 20%">Nama Kategori</th>
+                                    <th style="width: 12%" class="text-center">Jml. Planning</th>
+                                    <th style="width: 15%" class="text-center">Budget Kategori</th>
+                                    <th style="width: 28%">Progress (Overall)</th>
+                                    <th style="width: 20%">Status Breakdown</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -134,6 +136,9 @@
                                     </td>
                                     <td class="text-center">
                                         <span class="badge bg-primary rounded-pill">{{ $kategori->planings_count }}</span>
+                                    </td>
+                                    <td class="text-center fw-bold text-success">
+                                        Rp {{ number_format($kategori->total_budget, 0, ',', '.') }}
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
@@ -189,6 +194,7 @@
                                 <tr class="table-info fw-bold">
                                     <td colspan="2">TOTAL KESELURUHAN</td>
                                     <td class="text-center">{{ $totalPlanning }}</td>
+                                    <td class="text-center text-success">Rp {{ number_format($totalBudget, 0, ',', '.') }}</td>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="progress w-100 me-3" style="height: 10px;">

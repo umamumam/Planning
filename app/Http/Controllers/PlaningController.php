@@ -139,10 +139,8 @@ class PlaningController extends Controller
 
     public function laporan()
     {
-        // Hitung progress berdasarkan status
         $totalPlanning = Planing::count();
 
-        // Hitung progress percentage untuk setiap status
         $planingPerStatus = Planing::selectRaw('status, COUNT(*) as total')
             ->groupBy('status')
             ->get()
@@ -150,7 +148,6 @@ class PlaningController extends Controller
                 return [$item->status => $item->total];
             });
 
-        // Hitung total progress percentage
         $totalProgressPercentage = 0;
         if ($totalPlanning > 0) {
             foreach ($planingPerStatus as $status => $count) {
@@ -172,16 +169,16 @@ class PlaningController extends Controller
             $totalProgressPercentage = $totalProgressPercentage / $totalPlanning;
         }
 
-        // Data kategori dengan progress
         $laporanKategori = Kategori::withCount('planings')
             ->with(['planings' => function ($query) {
-                $query->select('kategori_id', 'status');
+                $query->select('kategori_id', 'status', 'budget');
             }])
             ->get()
             ->map(function ($kategori) {
-                // Hitung progress per kategori
                 $totalKategori = $kategori->planings_count;
                 $kategoriProgress = 0;
+
+                $totalBudgetKategori = $kategori->planings->sum('budget');
 
                 if ($totalKategori > 0) {
                     foreach ($kategori->planings as $planing) {
@@ -204,6 +201,8 @@ class PlaningController extends Controller
                 } else {
                     $kategori->progress_percentage = 0;
                 }
+
+                $kategori->total_budget = $totalBudgetKategori;
 
                 return $kategori;
             });
